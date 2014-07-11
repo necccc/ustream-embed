@@ -1,0 +1,91 @@
+<!-- Import Polymer -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<script src="../bower_components/ustream-embedapi/src/ustream-embedapi.js"></script>
+
+<!-- Define your custom element -->
+<polymer-element name="ustream-embed" attributes="type content wmode autoplay controls volume">
+    <template>
+        <style>
+            iframe {
+                border: none;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+        <iframe id="UstreamViewer" src="{{sourceUrl}}"></iframe>
+    </template>
+    <script>
+        (function () {
+
+            var mediaTypes = {
+                CHANNEL: 'channel',
+                RECORDED: 'recorded'
+            },
+            baseUrl = '//www.ustream.tv/embed/';
+
+            Polymer('ustream-embed', {
+
+                mediaTypes: mediaTypes,
+
+                type: mediaTypes.CHANNEL,
+
+                // Fires when an instance of the element is created
+                created: function() {
+                },
+
+                // Fires when the element’s initial set of children and siblings are guaranteed to exist
+                domReady: function() {
+                    this.viewer = UstreamEmbed(this.$.UstreamViewer);
+
+                    var that = this.$.UstreamViewer,
+                         viewer = this.viewer
+
+                    window.addEventListener('message', function (e) {
+                        viewer.onmessage(e);
+                    });
+                },
+
+                // Fires when the "<polymer-element>" has been fully prepared
+                ready: function() {
+                    this.sourceUrl = createSourceUrl(this.type, this.content);
+                },
+
+                // Fires when the element was inserted into the document
+                attached: function() {
+                },
+
+                // Fires when the element was removed from the document
+                detached: function() {},
+
+                // Fires when an attribute was added, removed, or updated
+                attributeChanged: function(attr, oldVal, newVal) {
+                    //console.log(attr, oldVal, newVal);
+                },
+
+
+
+                play: function () {
+                    this.viewer.callMethod('play');
+                },
+
+                pause: function () {
+                    this.viewer.callMethod('pause');
+                },
+
+                load: function () {
+                    this.viewer.callMethod('load', this.type, this.content);
+                }
+            });
+
+
+
+
+
+            function createSourceUrl (type, id) {
+                return baseUrl + ((type === mediaTypes.RECORDED) ? 'recorded/' + id : id);
+            }
+
+        })();
+    </script>
+
+</polymer-element>

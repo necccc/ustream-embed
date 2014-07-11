@@ -1,10 +1,14 @@
 {
-    "name": "my-repo",
+    "name": "ustream-embed",
     "version": "0.0.0",
-    "description": "My awesome Custom Element",
+    "description": "Web Component wrapper for Ustream's embed player using Polymer",
     "license": "MIT",
-    "main": "dist/my-element.html",
+    "main": "dist/ustream-embedt.html",
     "keywords": [
+		"ustream",
+		"embed",
+		"live",
+		"video",
         "polymer",
         "web-components"
     ],
@@ -14,6 +18,7 @@
         "bower_components"
     ],
     "dependencies": {
-        "polymer": "Polymer/polymer#~0.3.3"
+        "polymer": "Polymer/polymer#~0.3.3",
+		"ustream-embedapi": "#~0.0.1"
     }
 }
