@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "description": "Web Component wrapper for Ustream's embed player using Polymer",
     "license": "MIT",
-    "main": "dist/ustream-embedt.html",
+    "main": "dist/ustream-embed.html",
     "keywords": [
 		"ustream",
 		"embed",
