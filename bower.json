@@ -1,6 +1,6 @@
 {
     "name": "ustream-embed",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Web Component wrapper for Ustream's embed player using Polymer",
     "license": "MIT",
     "main": "dist/ustream-embed.html",
